@@ -25,28 +25,32 @@ Also add to your `package.json` to lock on correct apollo-client dependency othe
 Then add `@ambientlight/bs-aws-appsync` into `bs-dependencies` in your project `bsconfig.json`.
 
 ### Example usage with bs-aws-amplify(with cognito-identity-pool auth)
-1. refer to bs-aws-amplify installation.
+1. refer to [bs-aws-amplify](https://github.com/ambientlight/bs-aws-amplify) installation.
 2. make sure AWSExports.re is available that binds `aws-exports.js` that is generated during `amplify init` or `amplify configure`
 
 ```reason
-/** AWSAmplify has to be configured prior */
-// AWSAmplify.amplify |. AWSAmplify.Amplify.configure(AWSExports.config);
+open AWSAppSync;
+open AWSAmplify;
 
-let auth = AWSAppSync.AWSAppSyncClient.auth(
+/** AWSAmplify has to be configured prior */
+// Amplify.amplify |. Amplify.configure(AWSExports.config);
+
+let auth = AWSAppSyncClient.auth(
   ~_type=AWSExports.config |. AWSExports.aws_appsync_authenticationTypeGet,
   ~jwtToken=() => 
-    /** uncomment and fill creds if no cognito authentification in place */
-    // AWSAmplify.Auth.signIn(~username="", ~password="") |> Js.Promise.then_(_signIn => AWSAmplify.auth |. AWSAmplify.Auth.currentSession)
-    AWSAmplify.auth |. AWSAmplify.Auth.currentSession
+    /**uncomment and fill creds if no cognito authentification in place */
+    // Auth.signIn(~username="", ~password="") |> Js.Promise.then_(_signIn => Auth.auth |. Auth.currentSession)
+    Auth.auth |. Auth.currentSession
     |> Js.Promise.then_(currentSession => {
+      //Js.log(currentSession);
       currentSession 
-      |. AWSAmplify.CognitoUserSession.getAccessToken
-      |. AWSAmplify.CognitoAccessToken.getJwtToken
+      |. CognitoUserSession.getAccessToken
+      |. CognitoAccessToken.getJwtToken
       |> Js.Promise.resolve
     })
 );
 
-let client = AWSAppSync.AWSAppSyncClient.create(~options=AWSAppSync.AWSAppSyncClient.createOptions(
+let client = AWSAppSyncClient.create(~options=AWSAppSyncClient.createOptions(
   ~url=AWSExports.config |. AWSExports.aws_appsync_graphqlEndpointGet,
   ~region=AWSExports.config |. AWSExports.aws_appsync_regionGet,
   ~auth,
