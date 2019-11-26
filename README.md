@@ -12,6 +12,8 @@ echo "@ambientlight:registry=https://npm.pkg.github.com" >> .npmrc
 npm install @ambientlight/bs-aws-appsync
 ```
 
+Then add `@ambientlight/bs-aws-appsync` into `bs-dependencies` in your project `bsconfig.json`.
+
 ### Example usage with bs-aws-amplify(with cognito-identity-pool auth)
 1. refer to bs-aws-amplify installation.
 2. make sure AWSExports.re is available that binds `aws-exports.js` that is generated during `amplify init` or `amplify configure`
