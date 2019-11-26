@@ -22,8 +22,6 @@ Also add to your `package.json` to lock on correct apollo-client dependency othe
 }
 ```
 
-https://github.com/apollographql/react-apollo/issues/3148#issuecomment-511622210
-
 Then add `@ambientlight/bs-aws-appsync` into `bs-dependencies` in your project `bsconfig.json`.
 
 ### Example usage with bs-aws-amplify(with cognito-identity-pool auth)
