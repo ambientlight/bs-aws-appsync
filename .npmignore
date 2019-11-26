@@ -1,5 +1,5 @@
 docs/
-lib/bs/
+lib/
 .merlin
 .bsb.lock
 .tgz

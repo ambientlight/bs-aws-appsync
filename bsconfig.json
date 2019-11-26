@@ -1,5 +1,5 @@
 {
-  "name": "bs-aws-appsync",
+  "name": "@ambientlight/bs-aws-appsync",
   "namespace": "AWSAppSync",
   "version": "0.1.0",
   "sources": [
