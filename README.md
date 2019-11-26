@@ -9,8 +9,20 @@ before installing, in your project directory, run:
 
 ```bash
 echo "@ambientlight:registry=https://npm.pkg.github.com" >> .npmrc
-npm install @ambientlight/bs-aws-appsync
+yarn install @ambientlight/bs-aws-appsync
+# if yarn fails with integrity failure, please run the following
+yarn --update-checksums
 ```
+
+Also add to your `package.json` to lock on correct apollo-client dependency otherwise you may hit [currentObservable.query.getCurrentResult is not a function](https://github.com/apollographql/react-apollo/issues/3148#issuecomment-511622210), this will only work with `yarn` though.
+
+```json
+"resolutions": {
+  "apollo-client": "2.6.3"
+}
+```
+
+https://github.com/apollographql/react-apollo/issues/3148#issuecomment-511622210
 
 Then add `@ambientlight/bs-aws-appsync` into `bs-dependencies` in your project `bsconfig.json`.
 
