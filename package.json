@@ -36,5 +36,8 @@
         "reason-apollo": "^0.17.0",
         "reason-react": "^0.7.0"
     },
+    "resolutions": {
+        "apollo-client": "2.6.4"
+    },
     "peerDependencies": {}
 }
